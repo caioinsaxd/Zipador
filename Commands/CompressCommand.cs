@@ -17,14 +17,20 @@ public class CompressCommand
 
         for (int i = 0; i < args.Length; i++)
         {
-            if (args[i] == "-o" && i + 1 < args.Length)
+            var arg = args[i];
+
+            if (arg == "-o" && i + 1 < args.Length)
             {
                 output = args[i + 1];
                 i++;
             }
-            else if (!args[i].StartsWith("-") && source == null)
+            else if (arg.StartsWith("-o"))
             {
-                source = args[i];
+                output = arg.Substring(2);
+            }
+            else if (!arg.StartsWith("-") && source == null)
+            {
+                source = arg;
             }
         }
 
