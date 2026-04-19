@@ -17,14 +17,20 @@ public class ExtractCommand
 
         for (int i = 0; i < args.Length; i++)
         {
-            if (args[i] == "-o" && i + 1 < args.Length)
+            var arg = args[i];
+
+            if (arg == "-o" && i + 1 < args.Length)
             {
                 destination = args[i + 1];
                 i++;
             }
-            else if (!args[i].StartsWith("-") && archive == null)
+            else if (arg.StartsWith("-o"))
             {
-                archive = args[i];
+                destination = arg.Substring(2);
+            }
+            else if (!arg.StartsWith("-") && archive == null)
+            {
+                archive = arg;
             }
         }
 
