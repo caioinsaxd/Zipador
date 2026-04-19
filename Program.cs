@@ -24,6 +24,8 @@ public class Program
                 ExtractCommand.Execute(commandArgs);
                 break;
             case "list":
+            case "--list":
+            case "-l":
                 ListCommand.Execute(commandArgs);
                 break;
             case "help":
