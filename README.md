@@ -95,7 +95,3 @@ Zipador.exe -h
 ### Access Denied
 
 - Run terminal as Administrator if writing to protected folders
-
-## License
-
-MIT
