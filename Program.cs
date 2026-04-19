@@ -8,10 +8,54 @@ public class Program
     {
         if (args.Length == 0)
         {
-            ShowHelp();
+            RunInteractive();
             return;
         }
 
+        RunCommandLine(args);
+    }
+
+    private static void RunInteractive()
+    {
+        Console.WriteLine("======================================");
+        Console.WriteLine("       Zipador - ZIP Compression Tool");
+        Console.WriteLine("======================================");
+        Console.WriteLine();
+        Console.WriteLine("Type 'help' for commands, 'exit' to quit.");
+        Console.WriteLine();
+
+        while (true)
+        {
+            Console.Write("Zipador> ");
+            var input = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(input))
+                continue;
+
+            input = input.Trim();
+
+            if (input.Equals("exit", StringComparison.OrdinalIgnoreCase))
+            {
+                Console.WriteLine("Goodbye!");
+                break;
+            }
+
+            if (input.Equals("help", StringComparison.OrdinalIgnoreCase))
+            {
+                ShowHelp();
+                continue;
+            }
+
+            var parts = ParseArguments(input);
+            if (parts.Length == 0)
+                continue;
+
+            RunCommandLine(parts);
+        }
+    }
+
+    private static void RunCommandLine(string[] args)
+    {
         var command = args[0].ToLowerInvariant();
         var commandArgs = args.Length > 1 ? args[1..] : Array.Empty<string>();
 
@@ -33,6 +77,11 @@ public class Program
             case "-h":
                 ShowHelp();
                 break;
+            case "exit":
+            case "quit":
+                Console.WriteLine("Goodbye!");
+                Environment.Exit(0);
+                break;
             default:
                 Console.WriteLine($"Unknown command: {command}");
                 Console.WriteLine();
@@ -42,19 +91,50 @@ public class Program
         }
     }
 
+    private static string[] ParseArguments(string input)
+    {
+        var args = new List<string>();
+        var current = "";
+        var inQuotes = false;
+
+        foreach (var c in input)
+        {
+            if (c == '"')
+            {
+                inQuotes = !inQuotes;
+            }
+            else if (c == ' ' && !inQuotes)
+            {
+                if (!string.IsNullOrEmpty(current))
+                {
+                    args.Add(current);
+                    current = "";
+                }
+            }
+            else
+            {
+                current += c;
+            }
+        }
+
+        if (!string.IsNullOrEmpty(current))
+            args.Add(current);
+
+        return args.ToArray();
+    }
+
     private static void ShowHelp()
     {
-        Console.WriteLine("Zipador - ZIP/RAR Compression Tool");
-        Console.WriteLine();
-        Console.WriteLine("Tutorial:");
-        Console.WriteLine("  zipador compress <source-folder> -o <output.zip>");
-        Console.WriteLine("  zipador extract <archive-file> -o <destination-folder>");
-        Console.WriteLine("  zipador list <archive-file>");
-        Console.WriteLine("  zipador help");
+        Console.WriteLine("Available commands:");
+        Console.WriteLine("  compress <folder> -o <output.zip>  Compress a folder to ZIP");
+        Console.WriteLine("  extract <archive> -o <folder>      Extract ZIP to folder");
+        Console.WriteLine("  list <archive>                     List ZIP contents");
+        Console.WriteLine("  help                                Show this help");
+        Console.WriteLine("  exit                                Quit");
         Console.WriteLine();
         Console.WriteLine("Examples:");
-        Console.WriteLine("  zipador compress MyFolder -o archive.zip");
-        Console.WriteLine("  zipador extract archive.zip -o ./extracted");
-        Console.WriteLine("  zipador list archive.zip");
+        Console.WriteLine("  compress MyFolder -o archive.zip");
+        Console.WriteLine("  extract archive.zip -o ./extracted");
+        Console.WriteLine("  list archive.zip");
     }
 }

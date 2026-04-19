@@ -8,46 +8,65 @@ A simple CLI tool to compress and extract ZIP files.
 - **Extract** ZIP files to folders  
 - **List** contents of ZIP archives
 - Self-contained EXE - no .NET installation required!
+- Interactive mode - just double-click to use!
 
 ## Installation
 
-### Option A: Download Ready-to-Use EXE (Recommended)
+1. Download `Zipador.exe` from [Releases](https://github.com/caioinsaxd/Zipador/releases)
+2. Copy to anywhere (e.g., `C:\Program Files\Zipador`)
+3. Double-click to run!
 
-1. Go to [Releases](https://github.com/caioinsaxd/Zipador/releases)
-2. Download `Zipador.exe` from the latest release
-3. Copy to anywhere (e.g., `C:\Program Files\Zipador`)
-4. Run!
+## How to Use
 
-```cmd
-C:\Program Files\Zipador\Zipador.exe --help
+### Method 1: Double-Click (Recommended)
+
+Just **double-click** `Zipador.exe` - it opens an interactive window:
+
+```
+======================================
+       Zipador - ZIP Compression Tool
+======================================
+
+Type 'help' for commands, 'exit' to quit.
+
+Zipador> 
 ```
 
-### Option B: Build from Source
+Then type commands like:
+- `compress MyFolder -o archive.zip`
+- `extract archive.zip -o extracted`
+- `list archive.zip`
+- `help`
+- `exit`
 
-```bash
-git clone https://github.com/caioinsaxd/Zipador.git
-cd Zipador
-dotnet publish -c Release -r win-x64 -o ./publish
-```
+### Method 2: Command Line
 
-## Usage
-
-### Compress
+Run from CMD/Terminal:
 
 ```cmd
 Zipador.exe compress "C:\path\to\folder" -o "C:\path\to\output.zip"
-```
-
-### Extract
-
-```cmd
 Zipador.exe extract "C:\path\to\file.zip" -o "C:\path\to\output"
+Zipador.exe list "C:\path\to\file.zip"
 ```
 
-### List Contents
+## Commands
 
-```cmd
-Zipador.exe list "C:\path\to\file.zip"
+| Command | Description |
+|---------|-------------|
+| `compress <folder> -o <output.zip>` | Compress folder to ZIP |
+| `extract <archive> -o <folder>` | Extract ZIP to folder |
+| `list <archive>` | List ZIP contents |
+| `help` | Show available commands |
+| `exit` | Quit the program |
+
+## Examples
+
+```
+Zipador> compress "My Documents" -o backup.zip
+Zipador> extract "backup.zip" -o "extracted folder"
+Zipador> list "backup.zip"
+Zipador> help
+Zipador> exit
 ```
 
 ## Important: Use Quotes for Paths with Spaces
@@ -61,28 +80,6 @@ Zipador.exe compress "My Documents" -o "archive.zip"
 # Bad - without quotes (will fail)
 Zipador.exe compress My Documents -o archive.zip
 ```
-
-## Shortcuts
-
-| Command | Shortcut |
-|--------|---------|
-| `Zipador.exe --help` | `Zipador.exe -h` |
-| `Zipador.exe --list` | `Zipador.exe -l` |
-
-## Examples
-
-```cmd
-# Compress a folder
-Zipador.exe compress "C:\Users\John\Documents" -o "C:\backup.zip"
-
-# Extract to desktop
-Zipador.exe extract "C:\backup.zip" -o "C:\Users\John\Desktop\extracted"
-
-# List contents
-Zipador.exe list "C:\backup.zip"
-
-# Show help
-Zipador.exe -h
 ```
 
 ## Troubleshooting
