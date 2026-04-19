@@ -107,7 +107,3 @@ zipador -h
 
 - Check the file path is correct
 - Use quotes around paths with spaces
-
-## License
-
-MIT
