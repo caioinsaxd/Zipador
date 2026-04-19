@@ -12,10 +12,11 @@
     <Description>ZIP/RAR Compression CLI Tool</Description>
     <Version>1.0.0</Version>
 
-    <!-- Publish settings for single exe (requires self-contained) -->
-    <!-- <PublishSingleFile>true</PublishSingleFile> -->
-    <!-- <SelfContained>true</SelfContained> -->
-    <!-- <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile> -->
+    <!-- Self-contained single file exe -->
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>true</SelfContained>
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
   </PropertyGroup>
 
   <ItemGroup>
