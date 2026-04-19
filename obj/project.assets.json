@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "net10.0": {
-      "SharpCompress/0.47.0": {
+      "SharpCompress/0.47.4": {
         "type": "package",
         "compile": {
           "lib/net10.0/SharpCompress.dll": {}
@@ -14,10 +14,10 @@
     }
   },
   "libraries": {
-    "SharpCompress/0.47.0": {
-      "sha512": "cy+K4ES0FhDTiyjPOs4ktF7pHwaZ2BS8GwCyZVFtV00hVqwIY+6YqcPv3V7C8MLPt6eJVxhSl+tu/w1J8L8EUg==",
+    "SharpCompress/0.47.4": {
+      "sha512": "0s2rmGFLFQED6ERPUtJiT/KoDsrBzsc+qDoVX1XT4HfAiLZCtV6Z9mHfArBgHVpDErl4Pt9M5VTMVQLPUJw5Kg==",
       "type": "package",
-      "path": "sharpcompress/0.47.0",
+      "path": "sharpcompress/0.47.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -31,14 +31,14 @@
         "lib/net9.0/SharpCompress.dll",
         "lib/netstandard2.0/SharpCompress.dll",
         "lib/netstandard2.1/SharpCompress.dll",
-        "sharpcompress.0.47.0.nupkg.sha512",
+        "sharpcompress.0.47.4.nupkg.sha512",
         "sharpcompress.nuspec"
       ]
     }
   },
   "projectFileDependencyGroups": {
     "net10.0": [
-      "SharpCompress >= 0.47.0"
+      "SharpCompress >= 0.47.4"
     ]
   },
   "packageFolders": {
@@ -86,7 +86,7 @@
         "dependencies": {
           "SharpCompress": {
             "target": "Package",
-            "version": "[0.47.0, )"
+            "version": "[0.47.4, )"
           }
         },
         "imports": [
